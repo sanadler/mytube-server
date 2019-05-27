@@ -1,0 +1,10 @@
+language: node_js
+node_js: node
+services: mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: yXMmCz96Sn6SXGMoXMeqExbuxTxbIt9trHdNBTibK2uEXd/V64A4UArGxRaYsaMCsqQZXOXU5OSvwhteYZtHJzhJXTiDqiQR4tHJIWIXwf2qL4XYwKQw6U8wRt+d8OJCNNMASxfPpBS0gE+WtPeVRNrhXEzN2AH6RLg4G/WYyUehKHpgL1xiarM7iP22d7g5QJs6V7GRS+Alk9BpDAXtKJlvyTMYgWa6/bTadCy+2XWt4NsEG/+qIR/gRL9BdhniblSn6zT/XNp9q3Lgxk5izT49AMxUSy1nG2W5zudpzE1Zjooe6MWH0u8wbpn5PZrLwNA1NjfGItq8A/rj1st/aidgQTz9vcCySrcq6xzjmcEpVhxNGpHKFs9R1LQn/mVvN/bqbgCgQGRKLujmFZTqBGTmqcpNqLlG4FC860NFlfjlHPEAHr9Mv2VkH4Wm8OdS/yyX5Ds02s1Lx4ztMdy0iyqTBrOp6S0sjFvQOkEh6hpOmkYTl+yF3pHBOGlwVsR9ac2ETSU4+rdnc0kNKeNlO8fV3x3poLwtDDcbho8fuecPJC7R6XCem+G5DKkAJXOAi1dSfplaW+03Tdf9uE215QKshTOAs3Jz1LZezryH8CVpXscFRBS6GYoIm++dVkttJiVHXmHrfJ7A+YyyCWNnMV1yoyVeGcIS720gXEKoct8=
+  app: quiet-dawn-76362
+  on:
+    repo: sanadler/mytube-server

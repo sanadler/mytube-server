@@ -1,13 +1,16 @@
+'use strict';
 const express = require('express');
 const router = express.Router();
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
+
 const {Video} = require('./models');
 
 Video.create("test");
 Video.create("test2");
+
 router.get('/videos', (req, res) => {
     Video
       .find()

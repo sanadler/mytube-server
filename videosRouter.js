@@ -8,9 +8,6 @@ const jsonParser = bodyParser.json();
 
 const {Video} = require('./models');
 
-Video.create("test");
-Video.create("test2");
-
 router.get('/videos', (req, res) => {
     Video
       .find()
@@ -34,7 +31,7 @@ router.get('/videos', (req, res) => {
       });
   });
 
-  router.post('/videos', (req, res) => {
+  router.post('/videos', jsonParser, (req, res) => {
     const requiredFields = ['videoId'];
     for (let i = 0; i < requiredFields.length; i++) {
       const field = requiredFields[i];

@@ -40,44 +40,43 @@ app.get('/', (req, res) => {
   });
   
 
-  // let server;
+  let server;
   
-  // function runServer(databaseUrl, port = PORT) {
+  function runServer(databaseUrl, port = PORT) {
   
-  //   return new Promise((resolve, reject) => {
-  //     mongoose.connect(databaseUrl, err => {
-  //       if (err) {
-  //         return reject(err);
-  //       }
-  //       server = app.listen(port, () => {
-  //         console.log(`Your app is listening on port ${port}`);
-  //         resolve();
-  //       })
-  //         .on('error', err => {
-  //           mongoose.disconnect();
-  //           reject(err);
-  //         });
-  //     }, { useNewUrlParser: true });
-  //   });
-  // }
+    return new Promise((resolve, reject) => {
+      mongoose.connect(databaseUrl, err => {
+        if (err) {
+          return reject(err);
+        }
+        server = app.listen(port, () => {
+          console.log(`Your app is listening on port ${port}`);
+          resolve();
+        })
+          .on('error', err => {
+            mongoose.disconnect();
+            reject(err);
+          });
+      }, { useNewUrlParser: true });
+    });
+  }
 
-  // function closeServer() {
-  //   return mongoose.disconnect().then(() => {
-  //     return new Promise((resolve, reject) => {
-  //       console.log('Closing server');
-  //       server.close(err => {
-  //         if (err) {
-  //           return reject(err);
-  //         }
-  //         resolve();
-  //       });
-  //     });
-  //   });
-  // }
+  function closeServer() {
+    return mongoose.disconnect().then(() => {
+      return new Promise((resolve, reject) => {
+        console.log('Closing server');
+        server.close(err => {
+          if (err) {
+            return reject(err);
+          }
+          resolve();
+        });
+      });
+    });
+  }
 
-  // if (require.main === module) {
-  //   runServer(DATABASE_URL).catch(err => console.error(err));
-  // }
+  if (require.main === module) {
+    runServer(DATABASE_URL).catch(err => console.error(err));
+  }
 
-  app.listen(8080);
-  //module.exports = { app, runServer, closeServer };
+  module.exports = { app, runServer, closeServer };

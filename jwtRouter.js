@@ -53,4 +53,4 @@ router.get('/api/protected', jwtAuth, (req, res) => {
   });
 });
 
-module.exports =  router;
+module.exports = router;

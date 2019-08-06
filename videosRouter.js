@@ -8,7 +8,7 @@ const jsonParser = bodyParser.json();
 
 const {Video} = require('./models');
 
-router.get('/videos', (req, res) => {
+router.get('/api/videos', (req, res) => {
     Video
       .find()
       .then(videos => {
@@ -22,7 +22,7 @@ router.get('/videos', (req, res) => {
       });
   });
 
-  router.get('/videos/:id', (req, res) => {
+  router.get('/api/videos/:id', (req, res) => {
     Video
       .findById(req.params.id)
       .then(video => res.json(video.serialize()))
@@ -31,8 +31,8 @@ router.get('/videos', (req, res) => {
       });
   });
 
-  router.post('/videos', jsonParser, (req, res) => {
-    const requiredFields = ['videoId'];
+  router.post('/api/videos', jsonParser, (req, res) => {
+    const requiredFields = ['videoId', 'title', 'description'];
     for (let i = 0; i < requiredFields.length; i++) {
       const field = requiredFields[i];
       if (!(field in req.body)) {
@@ -42,8 +42,9 @@ router.get('/videos', (req, res) => {
     }
     Video
       .create({
-        //title: req.body.title,
-        videoId: req.body.videoId
+        videoId: req.body.videoId,
+        title: req.body.title,
+        description: req.body.description
       })
       .then(video => res.status(201).json(video.serialize()))
       .catch(err => {
@@ -52,7 +53,28 @@ router.get('/videos', (req, res) => {
   
   });
 
-  router.delete('/videos/:id', (req, res) => {
+  router.put('/api/videos/:id', jsonParser, (req, res) => {
+    if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+      res.status(400).json({
+        error: 'Request path id and request body id values must match'
+      });
+    }
+  
+    const updated = {};
+    const updateableFields = ['title', 'description'];
+    updateableFields.forEach(field => {
+      if (field in req.body) {
+        updated[field] = req.body[field];
+      }
+    });
+  //find video by id and update the fields
+    Video
+      .findByIdAndUpdate(req.params.id, { $set: updated }, { new: true })
+      .then(res.status(204).end())
+      .catch(err => res.status(500).json({ message: 'Something went wrong' }));
+  });
+
+  router.delete('/api/videos/:id', (req, res) => {
     Video
       .findByIdAndRemove(req.params.id)
       .then(() => {

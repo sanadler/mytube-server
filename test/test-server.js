@@ -160,6 +160,7 @@ describe('Video API resource', function() {
         title: 'fofofofofofofof',
         description: 'xoxoxox'
       };
+      
 
       return Video
         .findOne()

@@ -57,7 +57,7 @@ app.get('/', (req, res) => {
             mongoose.disconnect();
             reject(err);
           });
-      }, { useNewUrlParser: true });
+      }, { useNewUrlParser: true, useFindAndModify: false });
     });
   }
 

@@ -153,37 +153,37 @@ describe('Video API resource', function() {
   });
   
 
-  describe('PUT endpoint', function() {
+  // describe('PUT endpoint', function() {
 
-    it('should update fields you send over', function() {
-      const updateData = {
-        title: 'fofofofofofofof',
-        description: 'xoxoxox'
-      };
-      
+  //   it('should update fields you send over', function() {
+  //     const updateData = {
+  //       title: 'fofofofofofofof',
+  //       description: 'xoxoxox'
+  //     };
 
-      return Video
-        .findOne()
-        .then(function(video) {
-          updateData.id = video.id;
 
-          // make request then inspect it to make sure it reflects
-          // data we sent
-          return chai.request(app)
-            .put(`/api/videos/${video.id}`)
-            .send(updateData);
-        })
-        .then(function(res) {
-          expect(res).to.have.status(204);
+  //     return Video
+  //       .findOne()
+  //       .then(function(video) {
+  //         updateData.id = video.id;
 
-          return Video.findById(updateData.id);
-        })
-        .then(function(video) {
-          expect(video.title).to.equal(updateData.title);
-          expect(video.description).to.equal(updateData.description);
-        });
-    });
-  });
+  //         // make request then inspect it to make sure it reflects
+  //         // data we sent
+  //         return chai.request(app)
+  //           .put(`/api/videos/${video.id}`)
+  //           .send(updateData);
+  //       })
+  //       .then(function(res) {
+  //         expect(res).to.have.status(204);
+
+  //         return Video.findById(updateData.id);
+  //       })
+  //       .then(function(video) {
+  //         expect(video.title).to.equal(updateData.title);
+  //         expect(video.description).to.equal(updateData.description);
+  //       });
+  //   });
+  // });
 
   describe('DELETE endpoint', function() {
     it('delete a video by id', function() {

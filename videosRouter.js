@@ -44,7 +44,8 @@ router.get('/api/videos', (req, res) => {
       .create({
         videoId: req.body.videoId,
         title: req.body.title,
-        description: req.body.description
+        description: req.body.description,
+        likedUsers: req.body.likedUsers
       })
       .then(video => res.status(201).json(video.serialize()))
       .catch(err => {

@@ -8,6 +8,7 @@ const jsonParser = bodyParser.json();
 
 const {Video} = require('./models');
 
+//get all videos
 router.get('/api/videos', (req, res) => {
     Video
       .find()
@@ -22,6 +23,7 @@ router.get('/api/videos', (req, res) => {
       });
   });
 
+  //get videos by id
   router.get('/api/videos/:id', (req, res) => {
     Video
       .findById(req.params.id)
@@ -31,6 +33,7 @@ router.get('/api/videos', (req, res) => {
       });
   });
 
+  //post new video
   router.post('/api/videos', jsonParser, (req, res) => {
     const requiredFields = ['videoId', 'title', 'description'];
     for (let i = 0; i < requiredFields.length; i++) {
@@ -54,6 +57,7 @@ router.get('/api/videos', (req, res) => {
   
   });
 
+  //update video title and description
   router.put('/api/videos/:id', jsonParser, (req, res) => {
     if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
       res.status(400).json({
@@ -75,6 +79,7 @@ router.get('/api/videos', (req, res) => {
       .catch(err => res.status(500).json({ message: 'Something went wrong' }));
   });
 
+  //delete video
   router.delete('/api/videos/:id', (req, res) => {
     Video
       .findByIdAndRemove(req.params.id)

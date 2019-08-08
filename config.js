@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = {
     CLIENT_ORIGIN: process.env.CLIENT_ORIGIN || 'https://fierce-cliffs-97625.herokuapp.com',
     PORT: process.env.PORT || 8080,

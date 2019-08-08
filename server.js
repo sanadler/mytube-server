@@ -13,8 +13,11 @@ app.use(
     })
 );
 
+//const videosRouter = require('./videosRouter');
 app.use(require('./jwtRouter'));
 app.use(require('./videosRouter'));
+//app.use('/', jwtRouter);
+//app.use('/videos', videosRouter);
 
 mongoose.Promise = global.Promise;
 

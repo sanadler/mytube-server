@@ -1,6 +1,6 @@
 'use strict';
 module.exports = {
-    CLIENT_ORIGIN: process.env.CLIENT_ORIGIN || 'https://fierce-cliffs-97625.herokuapp.com/',
+    CLIENT_ORIGIN: process.env.CLIENT_ORIGIN || 'https://fierce-cliffs-97625.herokuapp.com',
     PORT: process.env.PORT || 8080,
     DATABASE_URL: process.env.DATABASE_URL || 'mongodb://localhost/mytube-app',
     TEST_DATABASE_URL: process.env.TEST_DATABASE_URL || 'mongodb://localhost/test-mytube-app',

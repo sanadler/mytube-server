@@ -76,15 +76,18 @@ router.get('/api/videos', (req, res) => {
     Video
       .findByIdAndUpdate(req.params.id, { $set: updated }, { new: true })
       .then(res.status(204).end())
-      .catch(err => res.status(500).json({ message: 'Something went wrong' }));
+      .catch(err => {
+        res.status(500).json({ error: 'Something went wrong' });
+      });
   });
 
   //delete video
   router.delete('/api/videos/:id', (req, res) => {
     Video
       .findByIdAndRemove(req.params.id)
-      .then(() => {
-        res.status(204).end();
+      .then(res.status(204).end())
+      .catch(err => {
+        res.status(500).json({ error: 'Something went wrong' });
       });
   });
   
